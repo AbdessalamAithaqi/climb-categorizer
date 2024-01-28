@@ -1,7 +1,18 @@
+/**
+ * @fileoverview This module provides the ErrorScreen component for the application.
+ */
+
+// Import necessary modules from react, react-native and react-native-safe-area-context
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { Text, StyleSheet, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+/**
+ * The ErrorScreen component.
+ * It displays an error message and a button to navigate back.
+ * @param {object} navigation - The navigation object from react-navigation.
+ * @returns {React.Component} The ErrorScreen component.
+ */
 const ErrorScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
@@ -12,6 +23,9 @@ const ErrorScreen = ({ navigation }) => {
     );
 };
 
+/**
+ * Stylesheet for the ErrorScreen component.
+ */
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -26,10 +40,7 @@ const styles = StyleSheet.create({
         color: 'red',
     },
     errorMessage: {
-        fontSize: 16,
-        color: '#333',
-        textAlign: 'center',
-        marginVertical: 20,
+        // Your styles here
     },
 });
 
