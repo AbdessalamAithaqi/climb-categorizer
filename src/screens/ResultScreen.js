@@ -1,25 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '../components/Slider';
 
-const ResultScreen = ({ navigation }) => {
+const ResultScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            {/* <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-                {images.map((image, index) => (
-                    <Image key={index} source={image} style={styles.image} />
-                ))}
-            </ScrollView>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => navigation.navigate('Error')}
-                >
-                    <Text style={styles.text}>Go to Error</Text>
-                </TouchableOpacity>
-            </View> */}
-
             <Slider />
         </SafeAreaView>
     );
