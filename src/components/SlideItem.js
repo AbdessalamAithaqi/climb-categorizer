@@ -19,16 +19,14 @@ const { width, height } = Dimensions.get("screen");
  * @returns {React.Component} The SlideItem component.
  */
 const SlideItem = ({ item }) => (
-    <View style={styles.container}>
-        <Image
-            source={item.img}
-            resizeMode="contain"
-            style={styles.image}
-        />
-        <View style={styles.content}>
-            <Text style={styles.title}>{item.color}</Text>
-        </View>
+  <View style={styles.container}>
+    <Image source={{ uri: `data:image/jpeg;base64,${item.img}` }} resizeMode="contain" style={styles.image} />
+    <View style={styles.content}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{item.color}</Text>
+      </View>
     </View>
+  </View>
 );
 
 export default SlideItem;
@@ -46,11 +44,17 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
+        transform: [{ rotate: '90deg' }]
     },
     content: {
         position: 'absolute',
         bottom: 10,
         alignItems: 'center',
+    },
+    titleContainer: {
+      backgroundColor: 'black', // Use a semi-transparent white background
+      padding: 10, // Add padding to create some space around the text
+      borderRadius: 5, // Optional: Add border-radius for rounded corners
     },
     title: {
         fontSize: 30,

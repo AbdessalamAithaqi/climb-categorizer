@@ -7,7 +7,7 @@ import React from "react";
 import { StyleSheet, Animated, View, Dimensions } from "react-native";
 
 // Get the screen width
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get("screen");
 
 /**
  * The Pagination component.
@@ -40,18 +40,18 @@ const Pagination = ({ data, scrollX }) => (
 export default Pagination;
 
 const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        bottom: -20, // Position adjusted to below the slider
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    dot: {
-        height: 12,
-        borderRadius: 6,
-        marginHorizontal: 3,
-        backgroundColor: '#ccc',
-    }
+  container: {
+    position: "absolute",
+    bottom: -20, // Position adjusted to below the slider
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dot: {
+    height: 12,
+    borderRadius: 6,
+    marginHorizontal: 3,
+    backgroundColor: 'black',
+  },
 });
