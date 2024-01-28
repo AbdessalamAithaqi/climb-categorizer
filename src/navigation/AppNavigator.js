@@ -57,7 +57,11 @@ const AppNavigator = () => {
         cardStyleInterpolator: forSlide,
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }} // This line hides the header for the HomeScreen
+      />
       <Stack.Screen name="Result" component={ResultScreen} />
     </Stack.Navigator>
   );
