@@ -20,7 +20,7 @@ const { width, height } = Dimensions.get("screen");
  */
 const SlideItem = ({ item }) => (
   <View style={styles.container}>
-    <Image source={item.img} resizeMode="contain" style={styles.image} />
+    <Image source={{ uri: `data:image/jpeg;base64,${item.img}` }} resizeMode="contain" style={styles.image} />
     <View style={styles.content}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{item.color}</Text>
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
+        transform: [{ rotate: '90deg' }]
     },
     content: {
         position: 'absolute',

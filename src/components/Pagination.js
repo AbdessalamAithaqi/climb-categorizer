@@ -5,7 +5,6 @@
 // Import necessary modules from react and react-native
 import React from "react";
 import { StyleSheet, Animated, View, Dimensions } from "react-native";
-import colorPalette from "../styles/GlobalStyles.js";
 
 // Get the screen width
 const { width } = Dimensions.get("screen");
