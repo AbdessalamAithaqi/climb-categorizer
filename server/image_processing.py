@@ -40,6 +40,14 @@ def process_image(image_data):
 
     with open(filename, 'wb') as tmp:
         tmp.write(image_data)
+
+    with Image.open(filename) as img:
+        # Save the image in JPEG format with the specified quality
+        new_size = (1000, 1000)  # Replace 'width' and 'height' with your desired dimensions
+        # Resize the image
+        resized_img = img.resize(new_size)
+        resized_img.save(filename)
+
     return_images, colors = _process_image(filename)
     os.remove(filename)
     
@@ -48,6 +56,7 @@ def process_image(image_data):
         img.save(filename)
         with open(filename, "rb") as file:
             return file.read()
+
     return_images = map(map_img, return_images)
     
     
@@ -62,6 +71,7 @@ def _process_image(file):
 
     if model:
         predictions = model.predict(file, confidence=10)
+        print(predictions)
         if not predictions:
             print(f"Failed to get predictions for {file}")
             return
@@ -99,10 +109,11 @@ def _process_image(file):
             brightening_factor = 0.5
             # Make everything besides the hold darker
             highlighted_image = __brighten_region(highlighted_image, brighten_boxes, brightening_factor)
-            highlighted_images.append(highlighted_image)
-            
+            highlighted_images.append(highlighted_image)            
 
         return highlighted_images, colors
+    else:
+        print("No Model!")
 
 if __name__ == "__main__":
     # infer on a local image
