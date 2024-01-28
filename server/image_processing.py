@@ -61,16 +61,13 @@ def _process_image(file):
     model = project.version(API_VERSION).model
 
     if model:
-        image = Image.open(file)
-        predictions = model.predict(file, confidence=40)
+        predictions = model.predict(file, confidence=10)
         if not predictions:
             print(f"Failed to get predictions for {file}")
             return
 
-        brighten_boxes = []
         grouped_predictions = {}
         for pred in predictions:
-            # print(pred)
             pred = pred.json_prediction
             color = pred['class']
 
@@ -81,7 +78,10 @@ def _process_image(file):
 
         highlighted_images = []
         colors = []
+        image = Image.open(file)
+        from json import dumps
         for color, preds in grouped_predictions.items():
+            brighten_boxes = []
             highlighted_image = image.copy()
             colors.append(color)
             
@@ -99,7 +99,6 @@ def _process_image(file):
             brightening_factor = 0.5
             # Make everything besides the hold darker
             highlighted_image = __brighten_region(highlighted_image, brighten_boxes, brightening_factor)
-            highlighted_image.save(color + ".jpg")
             highlighted_images.append(highlighted_image)
             
 
