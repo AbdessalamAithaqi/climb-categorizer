@@ -1,8 +1,18 @@
+/**
+ * @fileoverview This module provides the ResultScreen component for the application.
+ */
+
+// Import necessary modules from react, react-native and react-native-safe-area-context
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '../components/Slider';
 
+/**
+ * The ResultScreen component.
+ * It wraps the Slider component in a SafeAreaView.
+ * @returns {React.Component} The ResultScreen component.
+ */
 const ResultScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -11,30 +21,18 @@ const ResultScreen = () => {
     );
 };
 
-// Define your styles here
+/**
+ * Stylesheet for the ResultScreen component.
+ */
 const styles = StyleSheet.create({
     scrollViewContainer: {
         alignItems: 'center',
         justifyContent: 'center',
     },
     image: {
-        width: 300, // Adjust as needed
-        height: 300, // Adjust as needed
+        width: 300,
+        height: 300, 
         marginVertical: 10,
-    },
-    buttonContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 20,
-    },
-    button: {
-        backgroundColor: 'orange',
-        borderRadius: 20,
-        padding: 10,
-    },
-    text: {
-        color: 'white',
-        fontSize: 16,
     },
 });
 
