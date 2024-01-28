@@ -16,7 +16,7 @@ class MyServer(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
             post_data = self.rfile.read(content_length) 
             images = process_image(post_data)
-            self.wfile.write(bytes(dumps(images), 'utf-8'))
+            self.wfile.write(images)
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/html')

@@ -37,13 +37,17 @@ def __brighten_region(image, boxes, factor):
 def process_image(image_data):
     # Save image data
     filename = os.path.join(".", "server", "images", f"{get_random_string(6)}.jpg")
-    with open("./server/images/640img.jpg", 'rb') as file:
-        image_data = file.read()
+
     with open(filename, 'wb') as tmp:
         tmp.write(image_data)
     return_images = _process_image(filename)
     print(return_images)
     os.remove(filename)
+    # Save and read the images to get good byte format
+    if return_images:
+        return_images.save(filename)
+    with open(filename, "rb") as file:
+        return_images = file.read()
     return return_images
     
 
