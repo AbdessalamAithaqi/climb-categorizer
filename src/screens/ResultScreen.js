@@ -1,19 +1,12 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Slider from '../components/Slider';
 
 const ResultScreen = ({ navigation }) => {
-    // Array of image sources
-    const images = [
-        require('../assets/templatePic1.jpg'), // Update the path to your local images
-        require('../assets/templatePic2.jpg'),
-        require('../assets/templatePic3.jpg'),
-
-        // ... more images
-    ];
-
     return (
-        <View style={{ flex: 1 }}>
-            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <SafeAreaView style={{ flex: 1 }}>
+            {/* <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                 {images.map((image, index) => (
                     <Image key={index} source={image} style={styles.image} />
                 ))}
@@ -25,8 +18,10 @@ const ResultScreen = ({ navigation }) => {
                 >
                     <Text style={styles.text}>Go to Error</Text>
                 </TouchableOpacity>
-            </View>
-        </View>
+            </View> */}
+
+            <Slider />
+        </SafeAreaView>
     );
 };
 

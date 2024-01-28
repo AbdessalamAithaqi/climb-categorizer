@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ErrorScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.errorText}>An error occurred!</Text>
             <Text style={styles.errorMessage}>We could not find the route you were looking for.</Text>
             <Button title="Go Back" onPress={() => navigation.goBack()} />
-        </View>
+        </SafeAreaView>
     );
 };
 
