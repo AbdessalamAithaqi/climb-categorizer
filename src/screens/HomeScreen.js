@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
 
 const HomeScreen = ({ navigation }) => {
@@ -25,8 +25,8 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
-          <Button
-            title="Flip Camera"
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
@@ -34,11 +34,15 @@ const HomeScreen = ({ navigation }) => {
                   : Camera.Constants.Type.back
               );
             }}
-          />
-          <Button
-            title="Go to Result"
+          >
+            <Text style={styles.text}>Flip Camera</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => navigation.navigate('Result')}
-          />
+          >
+            <Text style={styles.text}>Go to Result</Text>
+          </TouchableOpacity>
         </View>
       </Camera>
     </View>
@@ -57,8 +61,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     flexDirection: 'row',
     margin: 20,
+    marginBottom: 60, // Increased bottom margin
     justifyContent: 'space-around',
     alignItems: 'flex-end',
+  },
+  button: {
+    backgroundColor: 'orange',
+    borderRadius: 20,
+    padding: 10,
+    paddingHorizontal: 20,
+    elevation: 2,  // Add shadow for Android (optional)
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
