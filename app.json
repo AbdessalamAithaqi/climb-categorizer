@@ -1,0 +1,43 @@
+{
+    "expo": {
+        "name": "ChromaClimb",
+        "slug": "chromaclimb",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./src/assets/loading.png",
+        "splash": {
+            "image": "./src/assets/loading.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.mchacks.chromaclimb",
+            "infoPlist": {
+                "NSCameraUsageDescription": "This app uses the camera to scan bouldering walls codes.",
+                "NSPhotoLibraryUsageDescription": "This app needs access to the photo library."
+            }
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./src/assets/loading.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "com.mchacks.chromaclimb",
+            "permissions": [
+                "CAMERA",
+                "WRITE_EXTERNAL_STORAGE",
+                "READ_EXTERNAL_STORAGE"
+            ]
+        },
+        "web": {
+            "favicon": "./src/assets/loading.png"
+        }
+    }
+}
