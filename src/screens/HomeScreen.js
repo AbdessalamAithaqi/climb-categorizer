@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
+import Slides from '../data/Slides';
 
 SERVER_URL = "http://ec2-18-205-36-146.compute-1.amazonaws.com"
 POST_ENDPOINT = "upload"
@@ -56,17 +57,20 @@ const HomeScreen = ({ navigation }) => {
       console.log(token)
       console.log(colors)
 
-      fetch(`${SERVER_URL}/${GET_ENDPOINT}?color=${colors[3]}&token=${token}`).then(
-        async (data) => {
-          data = await data.json()
-          const img = data.image
-          console.log(img)
+      id = 1;
+      for (let id = 0; id < colors.length; id++) {
+        color = colors[id]
+        console.log(color)
+        let data = await fetch(`${SERVER_URL}/${GET_ENDPOINT}?color=${color}&token=${token}`)
+        data = await data.json()
+        const img = data.image
+        Slides.push({
+          id: id + 1,
+          img: img,
+          color: color,
         })
-
-      // const images = colors.map(async color => {
-      //   return color
-      // })
-      // console.log(images)
+        id += 1
+      }
     }
   };
 
@@ -101,28 +105,6 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const ImageDisplay = () => {
-  const [base64Data, setBase64Data] = useState('');
-
-  useEffect(() => {
-    // Fetch or set your base64 data here
-    const fetchedBase64Data = '...'; // Replace with your actual base64 data
-    setBase64Data(fetchedBase64Data);
-  }, []); // Run only once on component mount
-
-  return (
-    <div>
-      <h1>Image Display</h1>
-      {base64Data && (
-        <img
-          src={`data:image/jpeg;base64,${base64Data}`}
-          alt="Base64 Image"
-          style={{ maxWidth: '100%', maxHeight: '400px' }}
-        />
-      )}
-    </div>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
