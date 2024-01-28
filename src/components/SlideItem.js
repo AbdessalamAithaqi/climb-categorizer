@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
+    transform: [{ rotate: '90deg' }],
   },
   content: {
     position: 'absolute',
