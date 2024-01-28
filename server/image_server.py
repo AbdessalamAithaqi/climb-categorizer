@@ -2,8 +2,9 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from image_processing import process_image, get_random_string
 from json import dumps
 from urllib.parse import urlparse, parse_qs
+import base64
 
-hostName = "localhost"
+hostName = "0.0.0.0"
 serverPort = 80
 
 class MyServer(BaseHTTPRequestHandler):
@@ -17,7 +18,8 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
-            post_data = self.rfile.read(content_length) 
+            post_data = self.rfile.read(content_length)             
+            post_data = base64.b64decode(post_data)
             images, colors = process_image(post_data)
             token = get_random_string(30)
             self.wfile.write(dumps({
@@ -52,9 +54,10 @@ class MyServer(BaseHTTPRequestHandler):
                 return
 
             self.send_response(200)
-            self.send_header('Content-type', 'text/jpeg')
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(image)
+            base64_data = base64.b64encode(image).decode('utf-8')
+            self.wfile.write(dumps({'image': base64_data}).encode('utf-8'))
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/html')
