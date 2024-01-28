@@ -69,7 +69,6 @@ const HomeScreen = ({ navigation }) => {
           img: img,
           color: color,
         })
-        id += 1
       }
     }
   };
