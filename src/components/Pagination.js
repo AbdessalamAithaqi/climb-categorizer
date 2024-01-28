@@ -18,23 +18,23 @@ const { width } = Dimensions.get("screen");
  * @returns {React.Component} The Pagination component.
  */
 const Pagination = ({ data, scrollX }) => (
-  <View style={styles.container}>
-    {data.map((_, i) => {
-      const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
-      const dotWidth = scrollX.interpolate({
-        inputRange,
-        outputRange: [12, 30, 12],
-        extrapolate: "clamp",
-      });
+    <View style={styles.container}>
+        {data.map((_, i) => {
+            const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
+            const dotWidth = scrollX.interpolate({
+                inputRange,
+                outputRange: [12, 30, 12],
+                extrapolate: 'clamp',
+            });
 
-      return (
-        <Animated.View
-          style={[styles.dot, { width: dotWidth }]}
-          key={i.toString()}
-        />
-      );
-    })}
-  </View>
+            return (
+                <Animated.View
+                    style={[styles.dot, { width: dotWidth }]}
+                    key={i.toString()}
+                />
+            );
+        })}
+    </View>
 );
 
 export default Pagination;

@@ -1,7 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "@react-native-community/netinfo": "^11.2.1",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "^49.0.22",

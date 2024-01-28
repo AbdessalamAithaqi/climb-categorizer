@@ -7,6 +7,7 @@ SERVER_URL = "http://ec2-18-205-36-146.compute-1.amazonaws.com"
 POST_ENDPOINT = "upload"
 GET_ENDPOINT = "next"
 
+
 const HomeScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
