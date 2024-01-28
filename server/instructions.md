@@ -1,7 +1,7 @@
 # Running and Using the Server
 - Run with cwd in the topmost level of the repository
 - run `pip install -r ./server/requirements.txt`
-
+- run `python ./server/image_server.py`
 ## Endpoints
 
 ### POST /upload
