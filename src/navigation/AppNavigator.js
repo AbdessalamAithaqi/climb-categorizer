@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Animated, Easing } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import ResultScreen from '../screens/ResultScreen';
+import ErrorScreen from '../screens/ErrorScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,7 @@ const AppNavigator = () => {
         options={{ headerShown: false }} // This line hides the header for the HomeScreen
       />
       <Stack.Screen name="Result" component={ResultScreen} />
+      <Stack.Screen name="Error" component={ErrorScreen} />
     </Stack.Navigator>
   );
 };
