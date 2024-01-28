@@ -8,7 +8,7 @@ import string
 def get_random_string(length):
     # choose from all lowercase letter
     letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(length))
+    return ''.join(random.choice(letters) for _ in range(length))
     
 
 RBF_API = dotenv.get_key(".env", key_to_get="ROBOFLOW_API_KEY")
@@ -40,15 +40,18 @@ def process_image(image_data):
 
     with open(filename, 'wb') as tmp:
         tmp.write(image_data)
-    return_images = _process_image(filename)
-    print(return_images)
+    return_images, colors = _process_image(filename)
     os.remove(filename)
-    # Save and read the images to get good byte format
-    if return_images:
-        return_images.save(filename)
-    with open(filename, "rb") as file:
-        return_images = file.read()
-    return return_images
+    
+    # Map pillow images to bytes objects
+    def map_img(img):
+        img.save(filename)
+        with open(filename, "rb") as file:
+            return file.read()
+    return_images = map(map_img, return_images)
+    
+    
+    return return_images, colors
     
 
 def _process_image(file):
@@ -59,30 +62,48 @@ def _process_image(file):
 
     if model:
         image = Image.open(file)
-        predictions = model.predict(file, confidence=5)
+        predictions = model.predict(file, confidence=40)
         if not predictions:
             print(f"Failed to get predictions for {file}")
             return
-        highlighted_image = image
 
         brighten_boxes = []
+        grouped_predictions = {}
         for pred in predictions:
+            # print(pred)
             pred = pred.json_prediction
-            x = int(pred['x'])
-            y = int(pred['y'])
-            width = int(pred['width'])
-            height = int(pred['height'])
-            left = x - width // 2
-            top = y - height // 2
+            color = pred['class']
 
-            box_to_brighten = (left, top, left+width, top+height)
-            brighten_boxes.append(box_to_brighten)
+            try:
+                grouped_predictions[color].append(pred)
+            except KeyError:
+                grouped_predictions[color] = [pred]
 
-        brightening_factor = 0.5
-        # Make everything besides the hold darker
-        highlighted_image = __brighten_region(highlighted_image, brighten_boxes, brightening_factor)
+        highlighted_images = []
+        colors = []
+        for color, preds in grouped_predictions.items():
+            highlighted_image = image.copy()
+            colors.append(color)
+            
+            for pred in preds:
+                x = int(pred['x'])
+                y = int(pred['y'])
+                width = int(pred['width'])
+                height = int(pred['height'])
+                left = x - width // 2
+                top = y - height // 2
 
-        return highlighted_image
+                box_to_brighten = (left, top, left+width, top+height)
+                brighten_boxes.append(box_to_brighten)
+
+            brightening_factor = 0.5
+            # Make everything besides the hold darker
+            highlighted_image = __brighten_region(highlighted_image, brighten_boxes, brightening_factor)
+            highlighted_image.save(color + ".jpg")
+            highlighted_images.append(highlighted_image)
+            
+
+        return highlighted_images, colors
 
 if __name__ == "__main__":
     # infer on a local image
