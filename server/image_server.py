@@ -54,9 +54,10 @@ class MyServer(BaseHTTPRequestHandler):
                 return
 
             self.send_response(200)
-            self.send_header('Content-type', 'text/jpeg')
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(image)
+            base64_data = base64.b64encode(image).decode('utf-8')
+            self.wfile.write(dumps({'image': base64_data}).encode('utf-8'))
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/html')

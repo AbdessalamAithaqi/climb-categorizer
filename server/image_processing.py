@@ -43,7 +43,7 @@ def process_image(image_data):
 
     with Image.open(filename) as img:
         # Save the image in JPEG format with the specified quality
-        new_size = (1000, 1000)  # Replace 'width' and 'height' with your desired dimensions
+        new_size = (1500, 1500)  # Replace 'width' and 'height' with your desired dimensions
         # Resize the image
         resized_img = img.resize(new_size)
         resized_img.save(filename)
