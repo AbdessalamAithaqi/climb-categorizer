@@ -4,9 +4,9 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Image } from 'rea
 const ResultScreen = ({ navigation }) => {
     // Array of image sources
     const images = [
-        require('../styles/images/templatePic1.jpg'), // Update the path to your local images
-        require('../styles/images/templatePic2.jpg'),
-        require('../styles/images/templatePic3.jpg'),
+        require('../assets/templatePic1.jpg'), // Update the path to your local images
+        require('../assets/templatePic2.jpg'),
+        require('../assets/templatePic3.jpg'),
 
         // ... more images
     ];

@@ -4,9 +4,9 @@
         "slug": "chromaclimb",
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./src/styles/images/loading.png",
+        "icon": "./src/assets/loading.png",
         "splash": {
-            "image": "./src/styles/images/loading.png",
+            "image": "./src/assets/loading.png",
             "resizeMode": "contain",
             "backgroundColor": "#ffffff"
         },
@@ -26,7 +26,7 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./src/styles/images/loading.png",
+                "foregroundImage": "./src/assets/loading.png",
                 "backgroundColor": "#FFFFFF"
             },
             "package": "com.mchacks.chromaclimb",
@@ -37,7 +37,7 @@
             ]
         },
         "web": {
-            "favicon": "./src/styles/images/loading.png"
+            "favicon": "./src/assets/loading.png"
         }
     }
 }
