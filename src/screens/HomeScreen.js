@@ -58,6 +58,10 @@ const HomeScreen = ({ navigation }) => {
       console.log(colors)
 
       id = 1;
+      while (Slides.length > 0) {
+        Slides.pop()
+        console.log("popped")
+      }
       for (let id = 0; id < colors.length; id++) {
         color = colors[id]
         console.log(color)
